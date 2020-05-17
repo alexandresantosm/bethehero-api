@@ -3,6 +3,7 @@ exports.up = function(knex) {
   return knex.schema.createTable('donation_stands', function (table) {
     table.string('id').primary();
     table.string('name').notNullable();
+    table.string('address').notNullable();
     table.string('email').notNullable();
     table.string('whatsapp').notNullable();
     table.string('city').notNullable();
