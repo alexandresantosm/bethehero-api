@@ -2,7 +2,16 @@ const connection = require('../database/connection');
 
 module.exports = {
   async index(request, response) {
-    const donations = await connection('donations').select('*');
+    const { page = 1 } = request.query;
+
+    const [count] = await connection('donations').count();
+
+    const donations = await connection('donations')
+      .limit(5)
+      .offset((page - 1) * 5)
+      .select('*');
+
+    response.header('X-Total-Count', count['count(*)']);
 
     return response.json(donations);
   },
