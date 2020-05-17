@@ -7,9 +7,18 @@ module.exports = {
     const [count] = await connection('donations').count();
 
     const donations = await connection('donations')
+      .join('donation_stands', 'donation_stands.id', '=', 'donations.donation_stand_id')
       .limit(5)
       .offset((page - 1) * 5)
-      .select('*');
+      .select([
+        'donations.*',
+        'donation_stands.name',
+        'donation_stands.address',
+        'donation_stands.email',
+        'donation_stands.whatsapp',
+        'donation_stands.city',
+        'donation_stands.uf'
+      ]);
 
     response.header('X-Total-Count', count['count(*)']);
 
