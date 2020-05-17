@@ -1,0 +1,11 @@
+{
+  "name": "bethehero-api",
+  "version": "1.0.0",
+  "description": "Api de gerenciamento de doações",
+  "main": "index.js",
+  "author": "Alexandre",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
